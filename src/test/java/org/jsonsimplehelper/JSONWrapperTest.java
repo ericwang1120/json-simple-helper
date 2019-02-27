@@ -44,4 +44,11 @@ public class JSONWrapperTest {
 		assertEquals("react", jsonWrapper.get("technical stacks").get(1).toString());
 	}
 
+	@Test
+	public void testGetNumber() {
+		JSONWrapper<JSONObject> jsonWrapper = new JSONWrapper<JSONObject>(
+				"{\"num\":\"1.20000\",\"technical stacks\": [\"java\",\"react\",\"angular\"]}");
+		assertEquals("1.20000", jsonWrapper.get("num").toString());
+	}
+
 }

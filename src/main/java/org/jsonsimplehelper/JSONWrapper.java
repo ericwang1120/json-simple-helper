@@ -3,6 +3,7 @@ package org.jsonsimplehelper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class JSONWrapper<T> {
 	private T jsonObject;
@@ -10,9 +11,13 @@ public class JSONWrapper<T> {
 
 	@SuppressWarnings("unchecked")
 	public JSONWrapper(String in) {
-		try {
-			this.jsonObject = (T) jParser.parse(in);
-		} catch (Exception e) {
+		if (in != null && (in.contains("[") || in.contains("{"))) {
+			try {
+				this.jsonObject = (T) jParser.parse(in);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		} else {
 			this.jsonObject = (T) in;
 		}
 	}
