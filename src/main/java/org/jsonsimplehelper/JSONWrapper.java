@@ -11,11 +11,12 @@ public class JSONWrapper<T> {
 
 	@SuppressWarnings("unchecked")
 	public JSONWrapper(String in) {
-		if (in != null && (in.contains("[") || in.contains("{"))) {
+		if (in != null && (in.startsWith("[") || in.startsWith("{"))) {
 			try {
 				this.jsonObject = (T) jParser.parse(in);
 			} catch (ParseException e) {
 				e.printStackTrace();
+				this.jsonObject = (T) in;
 			}
 		} else {
 			this.jsonObject = (T) in;

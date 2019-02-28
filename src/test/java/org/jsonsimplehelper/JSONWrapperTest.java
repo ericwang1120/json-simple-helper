@@ -50,5 +50,12 @@ public class JSONWrapperTest {
 				"{\"num\":\"1.20000\",\"technical stacks\": [\"java\",\"react\",\"angular\"]}");
 		assertEquals("1.20000", jsonWrapper.get("num").toString());
 	}
+	
+	@Test
+	public void testContainsSpecialChars() {
+		JSONWrapper<JSONObject> jsonWrapper = new JSONWrapper<JSONObject>(
+				"{\"special\":\"1.{20000\",\"technical stacks\": [\"java\",\"react\",\"angular\"]}");
+		assertEquals("1.{20000", jsonWrapper.get("special").toString());
+	}
 
 }
